@@ -28,8 +28,10 @@ namespace NetworkCardHelper
             NetworkInterface[] allNetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface card in allNetworkInterfaces)
             {
+                Console.WriteLine(card.Description + "|" + card.Description.Contains("Direct Virtual Adapter"));
+
                 // 只取以太网和WLAN
-                if (card.NetworkInterfaceType.Equals(NetworkInterfaceType.Wireless80211) || card.NetworkInterfaceType.Equals(NetworkInterfaceType.Ethernet))
+                if (card.NetworkInterfaceType.Equals(NetworkInterfaceType.Ethernet) || (card.NetworkInterfaceType.Equals(NetworkInterfaceType.Wireless80211) && !card.Description.Contains("Direct Virtual Adapter")))
                 {
                     string item = card.NetworkInterfaceType + " - " + card.Name;
                     this.listBox_NetworkCard.Items.Add(item);
@@ -138,6 +140,11 @@ namespace NetworkCardHelper
             this.label_ip_dns2_value.Text = "";
         }
 
+        private string getCardDesc()
+        {
+            return this.label_CardDesc_Value.Text;
+        }
+
         private void button_trans_ip_Click(object sender, EventArgs e)
         {
             this.textBox_ip_ip.Text = this.label_ip_value.Text;
@@ -166,6 +173,23 @@ namespace NetworkCardHelper
         private void button_exit_Click(object sender, EventArgs e)
         {
             this.Dispose();
+        }
+
+        private void button_all_apply_Click(object sender, EventArgs e)
+        {
+            button_ip_apply_Click(sender, e);
+            button_dns_apply_Click(sender, e);
+        }
+
+        private void button_ip_apply_Click(object sender, EventArgs e)
+        {
+            // 数据校验
+        }
+
+        private void button_dns_apply_Click(object sender, EventArgs e)
+        {
+            // 数据校验
+            NetworkSetUtil.SetDnsAddress(this.getCardDesc(), this.textBox_ip_dns1.Text, this.textBox_ip_dns2.Text);
         }
     }
 }

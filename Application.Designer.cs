@@ -429,6 +429,7 @@ namespace NetworkCardHelper
             this.button_ip_apply.TabIndex = 1;
             this.button_ip_apply.Text = "设置IP";
             this.button_ip_apply.UseVisualStyleBackColor = true;
+            this.button_ip_apply.Click += new System.EventHandler(this.button_ip_apply_Click);
             // 
             // button_dns_apply
             // 
@@ -438,6 +439,7 @@ namespace NetworkCardHelper
             this.button_dns_apply.TabIndex = 2;
             this.button_dns_apply.Text = "设置DNS";
             this.button_dns_apply.UseVisualStyleBackColor = true;
+            this.button_dns_apply.Click += new System.EventHandler(this.button_dns_apply_Click);
             // 
             // button_all_apply
             // 
@@ -447,6 +449,7 @@ namespace NetworkCardHelper
             this.button_all_apply.TabIndex = 3;
             this.button_all_apply.Text = "一键应用";
             this.button_all_apply.UseVisualStyleBackColor = true;
+            this.button_all_apply.Click += new System.EventHandler(this.button_all_apply_Click);
             // 
             // Application
             // 
