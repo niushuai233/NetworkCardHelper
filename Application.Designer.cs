@@ -63,9 +63,11 @@ namespace NetworkCardHelper
             this.textBox_ip_subnet = new System.Windows.Forms.TextBox();
             this.textBox_ip_dns1 = new System.Windows.Forms.TextBox();
             this.textBox_ip_dns2 = new System.Windows.Forms.TextBox();
+            this.button_exit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1_TopOperate.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox_operate.SuspendLayout();
             this.groupBox_IpInfo.SuspendLayout();
             this.groupBox_IP.SuspendLayout();
             this.SuspendLayout();
@@ -110,6 +112,7 @@ namespace NetworkCardHelper
             // 
             // groupBox_operate
             // 
+            this.groupBox_operate.Controls.Add(this.button_exit);
             this.groupBox_operate.Location = new System.Drawing.Point(222, 303);
             this.groupBox_operate.Name = "groupBox_operate";
             this.groupBox_operate.Size = new System.Drawing.Size(551, 52);
@@ -402,6 +405,16 @@ namespace NetworkCardHelper
             this.textBox_ip_dns2.Size = new System.Drawing.Size(247, 21);
             this.textBox_ip_dns2.TabIndex = 19;
             // 
+            // button_exit
+            // 
+            this.button_exit.Location = new System.Drawing.Point(461, 20);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Size = new System.Drawing.Size(75, 23);
+            this.button_exit.TabIndex = 0;
+            this.button_exit.Text = "退出";
+            this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -409,11 +422,13 @@ namespace NetworkCardHelper
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
             this.Name = "Application";
             this.Text = "Network Card  Tools v1.0 @niushuai233";
             this.panel1.ResumeLayout(false);
             this.groupBox1_TopOperate.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.groupBox_operate.ResumeLayout(false);
             this.groupBox_IpInfo.ResumeLayout(false);
             this.groupBox_IpInfo.PerformLayout();
             this.groupBox_IP.ResumeLayout(false);
@@ -458,6 +473,7 @@ namespace NetworkCardHelper
         private System.Windows.Forms.TextBox textBox_ip_subnet;
         private System.Windows.Forms.TextBox textBox_ip_gateway;
         private System.Windows.Forms.TextBox textBox_ip_ip;
+        private System.Windows.Forms.Button button_exit;
     }
 }
 

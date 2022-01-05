@@ -162,5 +162,10 @@ namespace NetworkCardHelper
         {
             this.textBox_ip_dns2.Text = this.label_ip_dns2_value.Text;
         }
+
+        private void button_exit_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }
