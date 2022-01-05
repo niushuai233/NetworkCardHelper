@@ -106,8 +106,6 @@ namespace NetworkCardHelper
                             continue;
                         }
                         v4Dns.Add(item);
-
-
                     }
 
                     // ipv4
@@ -138,6 +136,31 @@ namespace NetworkCardHelper
             this.label_ip_gateway_value.Text = "";
             this.label_ip_dns1_value.Text = "";
             this.label_ip_dns2_value.Text = "";
+        }
+
+        private void button_trans_ip_Click(object sender, EventArgs e)
+        {
+            this.textBox_ip_ip.Text = this.label_ip_value.Text;
+        }
+
+        private void button_trans_gateway_Click(object sender, EventArgs e)
+        {
+            this.textBox_ip_gateway.Text = this.label_ip_gateway_value.Text;
+        }
+
+        private void button_trans_subnet_Click(object sender, EventArgs e)
+        {
+            this.textBox_ip_subnet.Text = this.label_ip_subnet_value.Text;
+        }
+
+        private void button_trans_dns1_Click(object sender, EventArgs e)
+        {
+            this.textBox_ip_dns1.Text = this.label_ip_dns1_value.Text;
+        }
+
+        private void button_trans_dns2_Click(object sender, EventArgs e)
+        {
+            this.textBox_ip_dns2.Text = this.label_ip_dns2_value.Text;
         }
     }
 }
