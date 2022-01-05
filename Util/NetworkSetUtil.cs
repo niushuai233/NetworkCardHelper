@@ -29,27 +29,17 @@ namespace NetworkCardHelper
             ObjectQuery query = new ObjectQuery("SELECT * FROM Win32_NetworkAdapterConfiguration");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
 
-
             ManagementObjectCollection queryCollection = searcher.Get();
-            foreach (ManagementObject m in queryCollection)
+            foreach (ManagementObject cardProxy in queryCollection)
             {
-                if (m["Description"].Equals(cardDesc))
+                if (cardProxy["Description"].Equals(cardDesc))
                 {
-                    Console.WriteLine("Index : {0}", m["Index"]);
-                    Console.WriteLine("Description : {0}", m["Description"]);
-                    Console.WriteLine();
+                    ManagementBaseObject inPar = cardProxy.GetMethodParameters("SetDNSServerSearchOrder");
+                    inPar["DNSServerSearchOrder"] = new string[] { dns1, dns2 }; //设置DNS  1.DNS 2.备用DNS
+                    cardProxy.InvokeMethod("SetDNSServerSearchOrder", inPar, null);// 执行
+                    break;
                 }
             }
-
-            //ManagementObjectCollection managementObjectCollection = GetNetworkAdapterConfiguration();
-
-            //foreach (ManagementObject item in managementObjectCollection)
-            //{
-            //    Console.WriteLine(item.GetType().Name);
-            //    Console.WriteLine(item.GetType().FullName);
-            //    Console.WriteLine(item.GetType().Namespace);
-            //    Console.WriteLine();
-            //}
         }
 
         public static ManagementObjectCollection GetNetworkAdapterConfiguration()
