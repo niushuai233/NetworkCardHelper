@@ -64,6 +64,9 @@ namespace NetworkCardHelper
             this.textBox_ip_dns1 = new System.Windows.Forms.TextBox();
             this.textBox_ip_dns2 = new System.Windows.Forms.TextBox();
             this.button_exit = new System.Windows.Forms.Button();
+            this.button_ip_apply = new System.Windows.Forms.Button();
+            this.button_dns_apply = new System.Windows.Forms.Button();
+            this.button_all_apply = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1_TopOperate.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -112,6 +115,9 @@ namespace NetworkCardHelper
             // 
             // groupBox_operate
             // 
+            this.groupBox_operate.Controls.Add(this.button_all_apply);
+            this.groupBox_operate.Controls.Add(this.button_dns_apply);
+            this.groupBox_operate.Controls.Add(this.button_ip_apply);
             this.groupBox_operate.Controls.Add(this.button_exit);
             this.groupBox_operate.Location = new System.Drawing.Point(222, 303);
             this.groupBox_operate.Name = "groupBox_operate";
@@ -415,6 +421,33 @@ namespace NetworkCardHelper
             this.button_exit.UseVisualStyleBackColor = true;
             this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
+            // button_ip_apply
+            // 
+            this.button_ip_apply.Location = new System.Drawing.Point(89, 20);
+            this.button_ip_apply.Name = "button_ip_apply";
+            this.button_ip_apply.Size = new System.Drawing.Size(75, 23);
+            this.button_ip_apply.TabIndex = 1;
+            this.button_ip_apply.Text = "设置IP";
+            this.button_ip_apply.UseVisualStyleBackColor = true;
+            // 
+            // button_dns_apply
+            // 
+            this.button_dns_apply.Location = new System.Drawing.Point(169, 20);
+            this.button_dns_apply.Name = "button_dns_apply";
+            this.button_dns_apply.Size = new System.Drawing.Size(75, 23);
+            this.button_dns_apply.TabIndex = 2;
+            this.button_dns_apply.Text = "设置DNS";
+            this.button_dns_apply.UseVisualStyleBackColor = true;
+            // 
+            // button_all_apply
+            // 
+            this.button_all_apply.Location = new System.Drawing.Point(9, 19);
+            this.button_all_apply.Name = "button_all_apply";
+            this.button_all_apply.Size = new System.Drawing.Size(75, 23);
+            this.button_all_apply.TabIndex = 3;
+            this.button_all_apply.Text = "一键应用";
+            this.button_all_apply.UseVisualStyleBackColor = true;
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -474,6 +507,9 @@ namespace NetworkCardHelper
         private System.Windows.Forms.TextBox textBox_ip_gateway;
         private System.Windows.Forms.TextBox textBox_ip_ip;
         private System.Windows.Forms.Button button_exit;
+        private System.Windows.Forms.Button button_ip_apply;
+        private System.Windows.Forms.Button button_dns_apply;
+        private System.Windows.Forms.Button button_all_apply;
     }
 }
 
