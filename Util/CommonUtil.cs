@@ -53,5 +53,57 @@ namespace NetworkCardHelper
             sb.Append(ipLong & 0xFF);
             return sb.ToString();
         }
+
+        public static bool isEmpty(string source)
+        {
+            return null == source || source.Trim().Length == 0;
+        }
+
+        public static bool isNotEmpty(string source)
+        {
+            return !isEmpty(source);
+        }
+        public static bool isEmpty(string[] source)
+        {
+            return null == source || source.Length == 0;
+        }
+
+        public static bool isNotEmpty(string[] source)
+        {
+            return !isEmpty(source);
+        }
+
+        public static bool isEmpty<T>(List<T> source)
+        {
+            return null == source || source.Count == 0;
+        }
+
+        public static bool isNotEmpty<T>(List<T> source)
+        {
+            return !isEmpty<T>(source);
+        }
+
+        public static bool IsIp(string ip)
+        {
+            System.Net.IPAddress address;
+            return System.Net.IPAddress.TryParse(ip, out address);
+        }
+
+        public static bool AllIsIp(string[] ipArr)
+        {
+            if (isEmpty(ipArr))
+            {
+                return false;
+            }
+            foreach (string ip in ipArr)
+            {
+                if (!IsIp(ip))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
     }
 }
