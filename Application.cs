@@ -189,19 +189,25 @@ namespace NetworkCardHelper
         private void IpSet(bool showBox)
         {
             // 数据校验
-            NetworkSetUtil.SetIpAddress(this.getCardDesc(), this.textBox_ip_ip.Text);
-            NetworkSetUtil.SetSubnetAddress(this.getCardDesc(), this.textBox_ip_subnet.Text);
-            NetworkSetUtil.SetGatewayAddress(this.getCardDesc(), this.textBox_ip_gateway.Text);
-            if (showBox)
+            bool ip = NetworkSetUtil.SetIpAddress(this.getCardDesc(), this.textBox_ip_ip.Text);
+            if (ip)
             {
-                MessageBox.Show("IP设置成功");
+                bool subnet = NetworkSetUtil.SetSubnetAddress(this.getCardDesc(), this.textBox_ip_subnet.Text);
+                if (subnet)
+                {
+                    bool gateway = NetworkSetUtil.SetGatewayAddress(this.getCardDesc(), this.textBox_ip_gateway.Text);
+                    if (gateway && showBox)
+                    {
+                        MessageBox.Show("IP设置成功");
+                    }
+                }
             }
         }
 
         private void button_dns_apply_Click(object sender, EventArgs e)
         {
             if (this.DnsSet(true))
-            { 
+            {
                 this.LoadNetworkCardInfoList();
             }
         }

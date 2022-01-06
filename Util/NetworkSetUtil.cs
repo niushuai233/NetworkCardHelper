@@ -13,6 +13,22 @@ namespace NetworkCardHelper
 
         public static bool SetIpAddress(string cardDesc, string ip)
         {
+            if (!CommonUtil.IsIp(ip))
+            {
+                MessageBox.Show("IP非法");
+                return false;
+            }
+
+            ManagementObject cardProxy = GetCardProxy(cardDesc);
+            if (null != cardProxy)
+            {
+                ManagementBaseObject param = cardProxy.GetMethodParameters("SetDNSServerSearchOrder");
+                //设置IP
+                param["IPAddress"] = ip; 
+                // 执行
+                cardProxy.InvokeMethod("EnableStatic", param, null);
+                return true;
+            }
             return false;
         }
 
@@ -46,6 +62,19 @@ namespace NetworkCardHelper
                 return false;
             }
 
+            ManagementObject cardProxy = GetCardProxy(cardDesc);
+            if (null != cardProxy)
+            {
+                ManagementBaseObject param = cardProxy.GetMethodParameters("SetDNSServerSearchOrder");
+                param["DNSServerSearchOrder"] = dnsArr; //设置DNS  1.DNS 2.备用DNS
+                cardProxy.InvokeMethod("SetDNSServerSearchOrder", param, null);// 执行
+                return true;
+            }
+            return false;
+        }
+
+        public static ManagementObject GetCardProxy(string cardDesc)
+        {
             ObjectQuery query = new ObjectQuery("SELECT * FROM Win32_NetworkAdapterConfiguration");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(query);
 
@@ -54,21 +83,18 @@ namespace NetworkCardHelper
             {
                 if (cardProxy["Description"].Equals(cardDesc))
                 {
-                    ManagementBaseObject inPar = cardProxy.GetMethodParameters("SetDNSServerSearchOrder");
-                    inPar["DNSServerSearchOrder"] = dnsArr; //设置DNS  1.DNS 2.备用DNS
-                    Console.WriteLine(dnsArr.ToString());
-                    cardProxy.InvokeMethod("SetDNSServerSearchOrder", inPar, null);// 执行
-                    return true;
+                    return cardProxy;
                 }
             }
             // 找不到对应的网卡信息
             MessageBox.Show("未找到相应的网卡信息 " + cardDesc);
-            return false;
+            return null;
         }
 
         public static ManagementObjectCollection GetNetworkAdapterConfiguration()
         {
             return new ManagementClass("Win32_NetworkAdapterConfiguration").GetInstances();
         }
+
     }
 }
