@@ -15,6 +15,7 @@ namespace NetworkCardHelper
 {
     public partial class Application : Form
     {
+        public static string publicDNS = "";
         [Obsolete]
         public Application()
         {
@@ -326,6 +327,20 @@ namespace NetworkCardHelper
                 MessageBox.Show("DNS已启用");
                 this.ReloadAfterSet(this.label_current_card_key_hidden.Text);
             }
+        }
+
+        private void button_ip_select_dns1_Click(object sender, EventArgs e)
+        {
+            Forms.PublicDNSForm publicDNSForm = new Forms.PublicDNSForm(this);
+
+            publicDNSForm.ShowDialog(this);
+        }
+
+        private void button_ip_select_dns2_Click(object sender, EventArgs e)
+        {
+            Forms.PublicDNSForm publicDNSForm = new Forms.PublicDNSForm(this);
+
+            publicDNSForm.ShowDialog(this);
         }
     }
 }

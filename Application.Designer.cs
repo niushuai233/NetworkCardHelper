@@ -70,6 +70,8 @@ namespace NetworkCardHelper
             this.label_MAC_Value = new System.Windows.Forms.Label();
             this.label_Id = new System.Windows.Forms.Label();
             this.listBox_NetworkCard = new System.Windows.Forms.ListBox();
+            this.button_ip_select_dns1 = new System.Windows.Forms.Button();
+            this.button_ip_select_dns2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1_TopOperate.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -209,6 +211,8 @@ namespace NetworkCardHelper
             // 
             // groupBox_IP
             // 
+            this.groupBox_IP.Controls.Add(this.button_ip_select_dns2);
+            this.groupBox_IP.Controls.Add(this.button_ip_select_dns1);
             this.groupBox_IP.Controls.Add(this.textBox_ip_dns2);
             this.groupBox_IP.Controls.Add(this.textBox_ip_dns1);
             this.groupBox_IP.Controls.Add(this.textBox_ip_subnet);
@@ -240,14 +244,14 @@ namespace NetworkCardHelper
             // 
             this.textBox_ip_dns2.Location = new System.Drawing.Point(280, 155);
             this.textBox_ip_dns2.Name = "textBox_ip_dns2";
-            this.textBox_ip_dns2.Size = new System.Drawing.Size(247, 21);
+            this.textBox_ip_dns2.Size = new System.Drawing.Size(205, 21);
             this.textBox_ip_dns2.TabIndex = 19;
             // 
             // textBox_ip_dns1
             // 
             this.textBox_ip_dns1.Location = new System.Drawing.Point(280, 125);
             this.textBox_ip_dns1.Name = "textBox_ip_dns1";
-            this.textBox_ip_dns1.Size = new System.Drawing.Size(247, 21);
+            this.textBox_ip_dns1.Size = new System.Drawing.Size(205, 21);
             this.textBox_ip_dns1.TabIndex = 18;
             // 
             // textBox_ip_subnet
@@ -476,6 +480,26 @@ namespace NetworkCardHelper
             this.listBox_NetworkCard.TabIndex = 0;
             this.listBox_NetworkCard.SelectedValueChanged += new System.EventHandler(this.NetworkCard_SelectedValueChanged);
             // 
+            // button_ip_select_dns1
+            // 
+            this.button_ip_select_dns1.Location = new System.Drawing.Point(492, 125);
+            this.button_ip_select_dns1.Name = "button_ip_select_dns1";
+            this.button_ip_select_dns1.Size = new System.Drawing.Size(35, 23);
+            this.button_ip_select_dns1.TabIndex = 20;
+            this.button_ip_select_dns1.Text = "<<";
+            this.button_ip_select_dns1.UseVisualStyleBackColor = true;
+            this.button_ip_select_dns1.Click += new System.EventHandler(this.button_ip_select_dns1_Click);
+            // 
+            // button_ip_select_dns2
+            // 
+            this.button_ip_select_dns2.Location = new System.Drawing.Point(492, 155);
+            this.button_ip_select_dns2.Name = "button_ip_select_dns2";
+            this.button_ip_select_dns2.Size = new System.Drawing.Size(35, 23);
+            this.button_ip_select_dns2.TabIndex = 21;
+            this.button_ip_select_dns2.Text = "<<";
+            this.button_ip_select_dns2.UseVisualStyleBackColor = true;
+            this.button_ip_select_dns2.Click += new System.EventHandler(this.button_ip_select_dns2_Click);
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -542,6 +566,8 @@ namespace NetworkCardHelper
         private System.Windows.Forms.Button button_ip_enable_dhcp;
         private System.Windows.Forms.Button button_ip_enable_dns;
         private System.Windows.Forms.Label label_current_card_key_hidden;
+        private System.Windows.Forms.Button button_ip_select_dns2;
+        private System.Windows.Forms.Button button_ip_select_dns1;
     }
 }
 
