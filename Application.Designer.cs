@@ -35,7 +35,8 @@ namespace NetworkCardHelper
             this.button_LoadNetwordCard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox_operate = new System.Windows.Forms.GroupBox();
-            this.button_all_apply = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button_dns_apply = new System.Windows.Forms.Button();
             this.button_ip_apply = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
@@ -68,8 +69,6 @@ namespace NetworkCardHelper
             this.label_MAC_Value = new System.Windows.Forms.Label();
             this.label_Id = new System.Windows.Forms.Label();
             this.listBox_NetworkCard = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1_TopOperate.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -120,30 +119,37 @@ namespace NetworkCardHelper
             // 
             this.groupBox_operate.Controls.Add(this.button2);
             this.groupBox_operate.Controls.Add(this.button1);
-            this.groupBox_operate.Controls.Add(this.button_all_apply);
             this.groupBox_operate.Controls.Add(this.button_dns_apply);
             this.groupBox_operate.Controls.Add(this.button_ip_apply);
             this.groupBox_operate.Controls.Add(this.button_exit);
             this.groupBox_operate.Location = new System.Drawing.Point(222, 309);
             this.groupBox_operate.Name = "groupBox_operate";
-            this.groupBox_operate.Size = new System.Drawing.Size(551, 94);
+            this.groupBox_operate.Size = new System.Drawing.Size(551, 69);
             this.groupBox_operate.TabIndex = 2;
             this.groupBox_operate.TabStop = false;
             this.groupBox_operate.Text = "操作区";
             // 
-            // button_all_apply
+            // button2
             // 
-            this.button_all_apply.Location = new System.Drawing.Point(9, 61);
-            this.button_all_apply.Name = "button_all_apply";
-            this.button_all_apply.Size = new System.Drawing.Size(75, 23);
-            this.button_all_apply.TabIndex = 3;
-            this.button_all_apply.Text = "一键应用";
-            this.button_all_apply.UseVisualStyleBackColor = true;
-            this.button_all_apply.Click += new System.EventHandler(this.button_all_apply_Click);
+            this.button2.Location = new System.Drawing.Point(87, 32);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "自动DNS";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(7, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "启用DHCP";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // button_dns_apply
             // 
-            this.button_dns_apply.Location = new System.Drawing.Point(169, 62);
+            this.button_dns_apply.Location = new System.Drawing.Point(249, 32);
             this.button_dns_apply.Name = "button_dns_apply";
             this.button_dns_apply.Size = new System.Drawing.Size(75, 23);
             this.button_dns_apply.TabIndex = 2;
@@ -153,7 +159,7 @@ namespace NetworkCardHelper
             // 
             // button_ip_apply
             // 
-            this.button_ip_apply.Location = new System.Drawing.Point(89, 62);
+            this.button_ip_apply.Location = new System.Drawing.Point(168, 32);
             this.button_ip_apply.Name = "button_ip_apply";
             this.button_ip_apply.Size = new System.Drawing.Size(75, 23);
             this.button_ip_apply.TabIndex = 1;
@@ -163,7 +169,7 @@ namespace NetworkCardHelper
             // 
             // button_exit
             // 
-            this.button_exit.Location = new System.Drawing.Point(461, 62);
+            this.button_exit.Location = new System.Drawing.Point(456, 32);
             this.button_exit.Name = "button_exit";
             this.button_exit.Size = new System.Drawing.Size(75, 23);
             this.button_exit.TabIndex = 0;
@@ -452,33 +458,15 @@ namespace NetworkCardHelper
             this.listBox_NetworkCard.ItemHeight = 12;
             this.listBox_NetworkCard.Location = new System.Drawing.Point(3, 3);
             this.listBox_NetworkCard.Name = "listBox_NetworkCard";
-            this.listBox_NetworkCard.Size = new System.Drawing.Size(213, 400);
+            this.listBox_NetworkCard.Size = new System.Drawing.Size(213, 376);
             this.listBox_NetworkCard.TabIndex = 0;
             this.listBox_NetworkCard.SelectedValueChanged += new System.EventHandler(this.NetworkCard_SelectedValueChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 23);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "启用DHCP";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(89, 23);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "启用DNS";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 497);
+            this.ClientSize = new System.Drawing.Size(800, 463);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
@@ -536,7 +524,6 @@ namespace NetworkCardHelper
         private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Button button_ip_apply;
         private System.Windows.Forms.Button button_dns_apply;
-        private System.Windows.Forms.Button button_all_apply;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
     }

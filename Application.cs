@@ -129,7 +129,7 @@ namespace NetworkCardHelper
 
         private void ClearIpInfo()
         {
-            this.label_Id.Text = "信息区: ";
+            this.label_Id.Text = "网卡地址: ";
             this.label_MAC_Value.Text = "";
             this.label_CardSpeed_Value.Text = "";
             this.label_CardDesc_Value.Text = "";
@@ -189,17 +189,13 @@ namespace NetworkCardHelper
         private void IpSet(bool showBox)
         {
             // 数据校验
-            bool ip = NetworkSetUtil.SetIpAddress(this.getCardDesc(), this.textBox_ip_ip.Text);
+            bool ip = NetworkSetUtil.SetIpAddress(this.getCardDesc(), this.textBox_ip_ip.Text, this.textBox_ip_subnet.Text);
             if (ip)
             {
-                bool subnet = NetworkSetUtil.SetSubnetAddress(this.getCardDesc(), this.textBox_ip_subnet.Text);
-                if (subnet)
+                bool gateway = NetworkSetUtil.SetGatewayAddress(this.getCardDesc(), this.textBox_ip_gateway.Text);
+                if (gateway && showBox)
                 {
-                    bool gateway = NetworkSetUtil.SetGatewayAddress(this.getCardDesc(), this.textBox_ip_gateway.Text);
-                    if (gateway && showBox)
-                    {
-                        MessageBox.Show("IP设置成功");
-                    }
+                    MessageBox.Show("IP设置成功");
                 }
             }
         }
