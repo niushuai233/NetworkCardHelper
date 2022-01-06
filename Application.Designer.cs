@@ -149,6 +149,7 @@ namespace NetworkCardHelper
             this.button_ip_enable_dns.TabIndex = 5;
             this.button_ip_enable_dns.Text = "自动DNS";
             this.button_ip_enable_dns.UseVisualStyleBackColor = true;
+            this.button_ip_enable_dns.Click += new System.EventHandler(this.button_ip_enable_dns_Click);
             // 
             // button_ip_enable_dhcp
             // 

@@ -318,5 +318,14 @@ namespace NetworkCardHelper
                 this.ReloadAfterSet(this.label_current_card_key_hidden.Text);
             }
         }
+
+        private void button_ip_enable_dns_Click(object sender, EventArgs e)
+        {
+            if (NetworkSetUtil.EnableDNS(this.label_CardDesc_Value.Text))
+            {
+                MessageBox.Show("DNS已启用");
+                this.ReloadAfterSet(this.label_current_card_key_hidden.Text);
+            }
+        }
     }
 }

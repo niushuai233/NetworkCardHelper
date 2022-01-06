@@ -11,6 +11,42 @@ namespace NetworkCardHelper
     public class NetworkSetUtil
     {
 
+        public static bool EnableDNS(string cardDesc)
+        {
+
+            ManagementObject cardProxy = GetCardProxy(cardDesc);
+            if (null != cardProxy)
+            {
+                ManagementBaseObject param = cardProxy.GetMethodParameters("SetDNSServerSearchOrder");
+                param["DNSServerSearchOrder"] = null;
+                // 执行
+                ManagementBaseObject res = cardProxy.InvokeMethod("SetDNSServerSearchOrder", param, null);
+
+                // MessageBox.Show("SetIp: "+ res["returnValue"]);
+
+                if (dealEnableDNSRes(res["returnValue"]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool dealEnableDNSRes(object v)
+        {
+            if (v.ToString() == "0")
+            {
+                return true;
+            }
+
+            if (MessageBox.Show("DNS启用失败, 错误码: " + v + "\n是否查看错误描述?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://docs.microsoft.com/zh-cn/windows/win32/cimwin32prov/enabledns-method-in-class-win32-networkadapterconfiguration");
+            }
+            return false;
+        }
+
+
         public static bool EnableDHCP(string cardDesc)
         {
 
@@ -23,7 +59,7 @@ namespace NetworkCardHelper
 
                 // MessageBox.Show("SetIp: "+ res["returnValue"]);
 
-                if (dealEnableDnsRes(res["returnValue"]))
+                if (dealEnableDHCPRes(res["returnValue"]))
                 {
                     return true;
                 }
@@ -31,7 +67,7 @@ namespace NetworkCardHelper
             return false;
         }
 
-        private static bool dealEnableDnsRes(object v)
+        private static bool dealEnableDHCPRes(object v)
         {
             if (v.ToString() == "0")
             {
