@@ -32,11 +32,12 @@ namespace NetworkCardHelper
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1_TopOperate = new System.Windows.Forms.GroupBox();
+            this.label_current_card_key_hidden = new System.Windows.Forms.Label();
             this.button_LoadNetwordCard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox_operate = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_ip_enable_dns = new System.Windows.Forms.Button();
+            this.button_ip_enable_dhcp = new System.Windows.Forms.Button();
             this.button_dns_apply = new System.Windows.Forms.Button();
             this.button_ip_apply = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
@@ -69,7 +70,6 @@ namespace NetworkCardHelper
             this.label_MAC_Value = new System.Windows.Forms.Label();
             this.label_Id = new System.Windows.Forms.Label();
             this.listBox_NetworkCard = new System.Windows.Forms.ListBox();
-            this.label_current_card_key_hidden = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1_TopOperate.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -97,6 +97,16 @@ namespace NetworkCardHelper
             this.groupBox1_TopOperate.TabStop = false;
             this.groupBox1_TopOperate.Text = "Tool";
             // 
+            // label_current_card_key_hidden
+            // 
+            this.label_current_card_key_hidden.AutoSize = true;
+            this.label_current_card_key_hidden.Location = new System.Drawing.Point(6, 17);
+            this.label_current_card_key_hidden.Name = "label_current_card_key_hidden";
+            this.label_current_card_key_hidden.Size = new System.Drawing.Size(95, 12);
+            this.label_current_card_key_hidden.TabIndex = 9;
+            this.label_current_card_key_hidden.Text = "card_key_hidden";
+            this.label_current_card_key_hidden.Visible = false;
+            // 
             // button_LoadNetwordCard
             // 
             this.button_LoadNetwordCard.Location = new System.Drawing.Point(688, 17);
@@ -119,8 +129,8 @@ namespace NetworkCardHelper
             // 
             // groupBox_operate
             // 
-            this.groupBox_operate.Controls.Add(this.button2);
-            this.groupBox_operate.Controls.Add(this.button1);
+            this.groupBox_operate.Controls.Add(this.button_ip_enable_dns);
+            this.groupBox_operate.Controls.Add(this.button_ip_enable_dhcp);
             this.groupBox_operate.Controls.Add(this.button_dns_apply);
             this.groupBox_operate.Controls.Add(this.button_ip_apply);
             this.groupBox_operate.Controls.Add(this.button_exit);
@@ -131,23 +141,24 @@ namespace NetworkCardHelper
             this.groupBox_operate.TabStop = false;
             this.groupBox_operate.Text = "操作区";
             // 
-            // button2
+            // button_ip_enable_dns
             // 
-            this.button2.Location = new System.Drawing.Point(87, 32);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "自动DNS";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_ip_enable_dns.Location = new System.Drawing.Point(87, 32);
+            this.button_ip_enable_dns.Name = "button_ip_enable_dns";
+            this.button_ip_enable_dns.Size = new System.Drawing.Size(75, 23);
+            this.button_ip_enable_dns.TabIndex = 5;
+            this.button_ip_enable_dns.Text = "自动DNS";
+            this.button_ip_enable_dns.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // button_ip_enable_dhcp
             // 
-            this.button1.Location = new System.Drawing.Point(7, 32);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "启用DHCP";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_ip_enable_dhcp.Location = new System.Drawing.Point(7, 32);
+            this.button_ip_enable_dhcp.Name = "button_ip_enable_dhcp";
+            this.button_ip_enable_dhcp.Size = new System.Drawing.Size(75, 23);
+            this.button_ip_enable_dhcp.TabIndex = 4;
+            this.button_ip_enable_dhcp.Text = "启用DHCP";
+            this.button_ip_enable_dhcp.UseVisualStyleBackColor = true;
+            this.button_ip_enable_dhcp.Click += new System.EventHandler(this.button_ip_enable_dhcp_Click);
             // 
             // button_dns_apply
             // 
@@ -464,16 +475,6 @@ namespace NetworkCardHelper
             this.listBox_NetworkCard.TabIndex = 0;
             this.listBox_NetworkCard.SelectedValueChanged += new System.EventHandler(this.NetworkCard_SelectedValueChanged);
             // 
-            // label_current_card_key_hidden
-            // 
-            this.label_current_card_key_hidden.AutoSize = true;
-            this.label_current_card_key_hidden.Location = new System.Drawing.Point(6, 17);
-            this.label_current_card_key_hidden.Name = "label_current_card_key_hidden";
-            this.label_current_card_key_hidden.Size = new System.Drawing.Size(95, 12);
-            this.label_current_card_key_hidden.TabIndex = 9;
-            this.label_current_card_key_hidden.Text = "card_key_hidden";
-            this.label_current_card_key_hidden.Visible = false;
-            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -537,8 +538,8 @@ namespace NetworkCardHelper
         private System.Windows.Forms.Button button_exit;
         private System.Windows.Forms.Button button_ip_apply;
         private System.Windows.Forms.Button button_dns_apply;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_ip_enable_dhcp;
+        private System.Windows.Forms.Button button_ip_enable_dns;
         private System.Windows.Forms.Label label_current_card_key_hidden;
     }
 }

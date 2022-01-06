@@ -11,6 +11,40 @@ namespace NetworkCardHelper
     public class NetworkSetUtil
     {
 
+        public static bool EnableDHCP(string cardDesc)
+        {
+
+            ManagementObject cardProxy = GetCardProxy(cardDesc);
+            if (null != cardProxy)
+            {
+                ManagementBaseObject param = cardProxy.GetMethodParameters("EnableDHCP");
+                // 执行
+                ManagementBaseObject res = cardProxy.InvokeMethod("EnableDHCP", param, null);
+
+                // MessageBox.Show("SetIp: "+ res["returnValue"]);
+
+                if (dealEnableDnsRes(res["returnValue"]))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private static bool dealEnableDnsRes(object v)
+        {
+            if (v.ToString() == "0")
+            {
+                return true;
+            }
+
+            if (MessageBox.Show("DHCP启用失败, 错误码: " + v + "\n是否查看错误描述?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://docs.microsoft.com/zh-cn/windows/win32/cimwin32prov/enabledhcp-method-in-class-win32-networkadapterconfiguration");
+            }
+            return false;
+        }
+
         public static bool SetIpAddress(string cardDesc, string ip, string subnet)
         {
             if (!CommonUtil.IsIp(ip))
