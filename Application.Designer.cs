@@ -69,6 +69,7 @@ namespace NetworkCardHelper
             this.label_MAC_Value = new System.Windows.Forms.Label();
             this.label_Id = new System.Windows.Forms.Label();
             this.listBox_NetworkCard = new System.Windows.Forms.ListBox();
+            this.label_current_card_key_hidden = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1_TopOperate.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,6 +88,7 @@ namespace NetworkCardHelper
             // 
             // groupBox1_TopOperate
             // 
+            this.groupBox1_TopOperate.Controls.Add(this.label_current_card_key_hidden);
             this.groupBox1_TopOperate.Controls.Add(this.button_LoadNetwordCard);
             this.groupBox1_TopOperate.Location = new System.Drawing.Point(4, 4);
             this.groupBox1_TopOperate.Name = "groupBox1_TopOperate";
@@ -462,6 +464,16 @@ namespace NetworkCardHelper
             this.listBox_NetworkCard.TabIndex = 0;
             this.listBox_NetworkCard.SelectedValueChanged += new System.EventHandler(this.NetworkCard_SelectedValueChanged);
             // 
+            // label_current_card_key_hidden
+            // 
+            this.label_current_card_key_hidden.AutoSize = true;
+            this.label_current_card_key_hidden.Location = new System.Drawing.Point(6, 17);
+            this.label_current_card_key_hidden.Name = "label_current_card_key_hidden";
+            this.label_current_card_key_hidden.Size = new System.Drawing.Size(95, 12);
+            this.label_current_card_key_hidden.TabIndex = 9;
+            this.label_current_card_key_hidden.Text = "card_key_hidden";
+            this.label_current_card_key_hidden.Visible = false;
+            // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -475,6 +487,7 @@ namespace NetworkCardHelper
             this.Text = "Network Card  Tools v1.0 @niushuai233";
             this.panel1.ResumeLayout(false);
             this.groupBox1_TopOperate.ResumeLayout(false);
+            this.groupBox1_TopOperate.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.groupBox_operate.ResumeLayout(false);
             this.groupBox_IpInfo.ResumeLayout(false);
@@ -526,6 +539,7 @@ namespace NetworkCardHelper
         private System.Windows.Forms.Button button_dns_apply;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label_current_card_key_hidden;
     }
 }
 

@@ -15,8 +15,11 @@ namespace NetworkCardHelper
 {
     public partial class Application : Form
     {
+        [Obsolete]
         public Application()
         {
+            System.Net.IPAddress ip;
+            Console.WriteLine(System.Net.IPAddress.TryParse("4.4.4", out ip));
             InitializeComponent();
             this.LoadNetworkCardInfoList();
         }
@@ -49,6 +52,11 @@ namespace NetworkCardHelper
         [Obsolete]
         private void NetworkCard_SelectedValueChanged(object sender, EventArgs e)
         {
+            this.ReloadAfterSelectValueChanged();
+        }
+
+        private void ReloadAfterSelectValueChanged()
+        {
             this.ClearIpInfo();
 
             object selectedItem = this.listBox_NetworkCard.SelectedItem;
@@ -57,6 +65,7 @@ namespace NetworkCardHelper
                 return;
             }
             string selectValue = selectedItem.ToString();
+            this.label_current_card_key_hidden.Text = selectValue;
 
             NetworkInterface card = (NetworkInterface)CommonUtil.ALL_NETWORK_INTERFACE_LIST.Get(selectValue);
 
@@ -127,6 +136,33 @@ namespace NetworkCardHelper
             catch (Exception) { }
         }
 
+        private void ReloadAfterSet(string key)
+        {
+            // 刷新网卡信息
+            this.LoadNetworkCardInfoList();
+            // 取当前应该存在的位置信息
+            System.Collections.IEnumerator enumerator = this.listBox_NetworkCard.Items.GetEnumerator();
+            int i = 0, index = -1;
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current.ToString().Equals(key))
+                {
+                    index = i;
+                }
+                i++;
+            }
+
+            if (index == -1)
+            {
+                Console.WriteLine("key: " + key + " 找不到匹配数据");
+                return;
+            }
+            // 手动选中
+            this.listBox_NetworkCard.SetSelected(index, true);
+            // 重新加载选中数据
+            this.ReloadAfterSelectValueChanged();
+        }
+
         private void ClearIpInfo()
         {
             this.label_Id.Text = "网卡地址: ";
@@ -175,19 +211,20 @@ namespace NetworkCardHelper
             this.Dispose();
         }
 
-        private void button_all_apply_Click(object sender, EventArgs e)
-        {
-            this.IpSet(false);
-            this.DnsSet(false);
-            MessageBox.Show("应用成功");
-        }
-
         private void button_ip_apply_Click(object sender, EventArgs e)
         {
-            this.IpSet(true);
+            string key = this.label_current_card_key_hidden.Text;
+            if (this.IpSet(true))
+            {
+                this.ReloadAfterSet(key);
+            }
         }
-        private void IpSet(bool showBox)
+        private bool IpSet(bool showBox)
         {
+            if (!CheckBeforeIpSet())
+            {
+                return false;
+            }
             // 数据校验
             bool ip = NetworkSetUtil.SetIpAddress(this.getCardDesc(), this.textBox_ip_ip.Text, this.textBox_ip_subnet.Text);
             if (ip)
@@ -195,16 +232,70 @@ namespace NetworkCardHelper
                 bool gateway = NetworkSetUtil.SetGatewayAddress(this.getCardDesc(), this.textBox_ip_gateway.Text);
                 if (gateway && showBox)
                 {
-                    MessageBox.Show("IP设置成功");
+                    if (this.DnsSet(false))
+                    {
+                        MessageBox.Show("IP设置成功");
+                        return true;
+                    }
                 }
             }
+            return false;
+        }
+
+        private bool CheckBeforeIpSet()
+        {
+
+            // ip地址
+            if (CommonUtil.isEmpty(this.textBox_ip_ip.Text))
+            {
+                MessageBox.Show("IP为空, 请检查!"); return false;
+            }
+            if (!CommonUtil.IsIp(this.textBox_ip_ip.Text))
+            {
+                MessageBox.Show("IP地址非法, 请检查!"); return false;
+            }
+            // 子网掩码
+            if (CommonUtil.isEmpty(this.textBox_ip_subnet.Text))
+            {
+                MessageBox.Show("子网掩码为空, 请检查!"); return false;
+            }
+            if (!CommonUtil.IsIp(this.textBox_ip_subnet.Text))
+            {
+                MessageBox.Show("子网掩码地址非法, 请检查!"); return false;
+            }
+            // 网关
+            if (CommonUtil.isEmpty(this.textBox_ip_gateway.Text))
+            {
+                MessageBox.Show("网关为空, 请检查!"); return false;
+            }
+            if (!CommonUtil.IsIp(this.textBox_ip_gateway.Text))
+            {
+                MessageBox.Show("网关地址非法, 请检查!"); return false;
+            }
+            // dns
+            if (CommonUtil.isEmpty(this.textBox_ip_dns1.Text) && CommonUtil.isEmpty(this.textBox_ip_dns1.Text))
+            {
+                MessageBox.Show("DNS信息为空, 请检查!"); return false;
+            }
+            // 非空的时候 保证是ip 跳过空的时候
+            if (CommonUtil.isNotEmpty(this.textBox_ip_dns1.Text) && !CommonUtil.IsIp(this.textBox_ip_dns1.Text))
+            {
+                MessageBox.Show("DNS地址非法, 请检查!"); return false;
+            }
+            if (CommonUtil.isNotEmpty(this.textBox_ip_dns2.Text) && !CommonUtil.IsIp(this.textBox_ip_dns2.Text))
+            {
+                MessageBox.Show("DNS地址非法, 请检查!"); return false;
+            }
+
+            return true;
         }
 
         private void button_dns_apply_Click(object sender, EventArgs e)
         {
+            string key = this.label_current_card_key_hidden.Text;
             if (this.DnsSet(true))
             {
-                this.LoadNetworkCardInfoList();
+                this.ReloadAfterSet(key);
             }
         }
 

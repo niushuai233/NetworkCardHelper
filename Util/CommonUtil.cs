@@ -85,8 +85,9 @@ namespace NetworkCardHelper
 
         public static bool IsIp(string ip)
         {
+            // Console.WriteLine(ip + ".Trim().Split('.').Length = " + ip.Trim().Split('.').Length);
             System.Net.IPAddress address;
-            return System.Net.IPAddress.TryParse(ip, out address);
+            return isNotEmpty(ip) && ip.Trim().Split('.').Length == 4 && System.Net.IPAddress.TryParse(ip, out address);
         }
 
         public static bool AllIsIp(string[] ipArr)

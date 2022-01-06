@@ -75,26 +75,44 @@ namespace NetworkCardHelper
                 // 执行
                 ManagementBaseObject res = cardProxy.InvokeMethod("SetGateways", param, null);
 
-                MessageBox.Show("SetGateway: " + res["returnValue"]);
-                return true;
+                // MessageBox.Show("SetGateway: " + res["returnValue"]);
+
+                if (dealIGatewayRes(res["returnValue"]))
+                {
+                    return true;
+                }
             }
             return false;
         }
 
-        public static bool SetSubnetAddress(string cardDesc, string subnet)
+        private static bool dealIGatewayRes(object v)
         {
+            if (v.ToString() == "0")
+            {
+                return true;
+            }
+
+            if (MessageBox.Show("网关设置失败, 错误码: " + v + "\n是否查看错误描述?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://docs.microsoft.com/zh-cn/windows/win32/cimwin32prov/setgateways-method-in-class-win32-networkadapterconfiguration");
+            }
             return false;
         }
+
         public static bool SetDnsAddress(string cardDesc, string dns1, string dns2)
         {
             if (CommonUtil.isEmpty(dns1) && CommonUtil.isEmpty(dns2)) { MessageBox.Show("DNS信息为空, 请检查!"); return false; }
 
-            string[] dnsArr;
+            string[] dnsArr = null;
             if (CommonUtil.isEmpty(dns1))
             {
                 dnsArr = new string[] { dns2.Trim() };
             }
-            else
+            else if (CommonUtil.isEmpty(dns2))
+            {
+                dnsArr = new string[] { dns1.Trim() };
+            }
+            else 
             {
                 dnsArr = new string[] { dns1.Trim(), dns2.Trim() };
             }
@@ -113,11 +131,29 @@ namespace NetworkCardHelper
                 param["DNSServerSearchOrder"] = dnsArr; //设置DNS  1.DNS 2.备用DNS
                 ManagementBaseObject res = cardProxy.InvokeMethod("SetDNSServerSearchOrder", param, null);// 执行
 
-                MessageBox.Show("SetDNS: " + res["returnValue"]);
-                return true;
+                // MessageBox.Show("SetDNS: " + res["returnValue"]);
+                if (dealIDnsRes(res["returnValue"]))
+                {
+                    return true;
+                }
             }
             return false;
         }
+
+        private static bool dealIDnsRes(object v)
+        {
+            if (v.ToString() == "0")
+            {
+                return true;
+            }
+
+            if (MessageBox.Show("DNS设置失败, 错误码: " + v + "\n是否查看错误描述?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://docs.microsoft.com/zh-cn/windows/win32/cimwin32prov/setdnsserversearchorder-method-in-class-win32-networkadapterconfiguration");
+            }
+            return false;
+        }
+
 
         public static ManagementObject GetCardProxy(string cardDesc)
         {
