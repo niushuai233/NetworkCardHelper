@@ -28,7 +28,7 @@ namespace NetworkCardHelper
             NetworkInterface[] allNetworkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
             foreach (NetworkInterface card in allNetworkInterfaces)
             {
-                Console.WriteLine(card.Description + "|" + card.Description.Contains("Direct Virtual Adapter"));
+                //Console.WriteLine(card.Description + "|" + card.Description.Contains("Direct Virtual Adapter"));
 
                 // 只取以太网和WLAN
                 if (card.NetworkInterfaceType.Equals(NetworkInterfaceType.Ethernet) || (card.NetworkInterfaceType.Equals(NetworkInterfaceType.Wireless80211) && !card.Description.Contains("Direct Virtual Adapter")))
@@ -177,19 +177,44 @@ namespace NetworkCardHelper
 
         private void button_all_apply_Click(object sender, EventArgs e)
         {
-            button_ip_apply_Click(sender, e);
-            button_dns_apply_Click(sender, e);
+            this.IpSet(false);
+            this.DnsSet(false);
+            MessageBox.Show("应用成功");
         }
 
         private void button_ip_apply_Click(object sender, EventArgs e)
         {
+            this.IpSet(true);
+        }
+        private void IpSet(bool showBox)
+        {
             // 数据校验
+            NetworkSetUtil.SetIpAddress(this.getCardDesc(), this.textBox_ip_ip.Text);
+            NetworkSetUtil.SetSubnetAddress(this.getCardDesc(), this.textBox_ip_subnet.Text);
+            NetworkSetUtil.SetGatewayAddress(this.getCardDesc(), this.textBox_ip_gateway.Text);
+            if (showBox)
+            {
+                MessageBox.Show("IP设置成功");
+            }
         }
 
         private void button_dns_apply_Click(object sender, EventArgs e)
         {
-            // 数据校验
-            NetworkSetUtil.SetDnsAddress(this.getCardDesc(), this.textBox_ip_dns1.Text, this.textBox_ip_dns2.Text);
+            if (this.DnsSet(true))
+            { 
+                this.LoadNetworkCardInfoList();
+            }
+        }
+
+        private bool DnsSet(bool showBox)
+        {
+            bool result = NetworkSetUtil.SetDnsAddress(this.getCardDesc(), this.textBox_ip_dns1.Text, this.textBox_ip_dns2.Text);
+            if (result && showBox)
+            {
+                MessageBox.Show("DNS设置成功");
+            }
+
+            return result;
         }
     }
 }

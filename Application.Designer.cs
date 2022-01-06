@@ -27,6 +27,7 @@ namespace NetworkCardHelper
         /// 设计器支持所需的方法 - 不要修改
         /// 使用代码编辑器修改此方法的内容。
         /// </summary>
+        [System.Obsolete]
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
@@ -34,8 +35,22 @@ namespace NetworkCardHelper
             this.button_LoadNetwordCard = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox_operate = new System.Windows.Forms.GroupBox();
+            this.button_all_apply = new System.Windows.Forms.Button();
+            this.button_dns_apply = new System.Windows.Forms.Button();
+            this.button_ip_apply = new System.Windows.Forms.Button();
+            this.button_exit = new System.Windows.Forms.Button();
             this.groupBox_IpInfo = new System.Windows.Forms.GroupBox();
             this.groupBox_IP = new System.Windows.Forms.GroupBox();
+            this.textBox_ip_dns2 = new System.Windows.Forms.TextBox();
+            this.textBox_ip_dns1 = new System.Windows.Forms.TextBox();
+            this.textBox_ip_subnet = new System.Windows.Forms.TextBox();
+            this.textBox_ip_gateway = new System.Windows.Forms.TextBox();
+            this.textBox_ip_ip = new System.Windows.Forms.TextBox();
+            this.button_trans_dns2 = new System.Windows.Forms.Button();
+            this.button_trans_dns1 = new System.Windows.Forms.Button();
+            this.button_trans_subnet = new System.Windows.Forms.Button();
+            this.button_trans_gateway = new System.Windows.Forms.Button();
+            this.button_trans_ip = new System.Windows.Forms.Button();
             this.label_ip_dns2_value = new System.Windows.Forms.Label();
             this.label_ip_dns1_value = new System.Windows.Forms.Label();
             this.label_ip_subnet_value = new System.Windows.Forms.Label();
@@ -53,20 +68,8 @@ namespace NetworkCardHelper
             this.label_MAC_Value = new System.Windows.Forms.Label();
             this.label_Id = new System.Windows.Forms.Label();
             this.listBox_NetworkCard = new System.Windows.Forms.ListBox();
-            this.button_trans_ip = new System.Windows.Forms.Button();
-            this.button_trans_gateway = new System.Windows.Forms.Button();
-            this.button_trans_subnet = new System.Windows.Forms.Button();
-            this.button_trans_dns1 = new System.Windows.Forms.Button();
-            this.button_trans_dns2 = new System.Windows.Forms.Button();
-            this.textBox_ip_ip = new System.Windows.Forms.TextBox();
-            this.textBox_ip_gateway = new System.Windows.Forms.TextBox();
-            this.textBox_ip_subnet = new System.Windows.Forms.TextBox();
-            this.textBox_ip_dns1 = new System.Windows.Forms.TextBox();
-            this.textBox_ip_dns2 = new System.Windows.Forms.TextBox();
-            this.button_exit = new System.Windows.Forms.Button();
-            this.button_ip_apply = new System.Windows.Forms.Button();
-            this.button_dns_apply = new System.Windows.Forms.Button();
-            this.button_all_apply = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.groupBox1_TopOperate.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -110,21 +113,63 @@ namespace NetworkCardHelper
             this.panel2.Controls.Add(this.listBox_NetworkCard);
             this.panel2.Location = new System.Drawing.Point(12, 76);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(776, 362);
+            this.panel2.Size = new System.Drawing.Size(776, 409);
             this.panel2.TabIndex = 1;
             // 
             // groupBox_operate
             // 
+            this.groupBox_operate.Controls.Add(this.button2);
+            this.groupBox_operate.Controls.Add(this.button1);
             this.groupBox_operate.Controls.Add(this.button_all_apply);
             this.groupBox_operate.Controls.Add(this.button_dns_apply);
             this.groupBox_operate.Controls.Add(this.button_ip_apply);
             this.groupBox_operate.Controls.Add(this.button_exit);
-            this.groupBox_operate.Location = new System.Drawing.Point(222, 303);
+            this.groupBox_operate.Location = new System.Drawing.Point(222, 309);
             this.groupBox_operate.Name = "groupBox_operate";
-            this.groupBox_operate.Size = new System.Drawing.Size(551, 52);
+            this.groupBox_operate.Size = new System.Drawing.Size(551, 94);
             this.groupBox_operate.TabIndex = 2;
             this.groupBox_operate.TabStop = false;
             this.groupBox_operate.Text = "操作区";
+            // 
+            // button_all_apply
+            // 
+            this.button_all_apply.Location = new System.Drawing.Point(9, 61);
+            this.button_all_apply.Name = "button_all_apply";
+            this.button_all_apply.Size = new System.Drawing.Size(75, 23);
+            this.button_all_apply.TabIndex = 3;
+            this.button_all_apply.Text = "一键应用";
+            this.button_all_apply.UseVisualStyleBackColor = true;
+            this.button_all_apply.Click += new System.EventHandler(this.button_all_apply_Click);
+            // 
+            // button_dns_apply
+            // 
+            this.button_dns_apply.Location = new System.Drawing.Point(169, 62);
+            this.button_dns_apply.Name = "button_dns_apply";
+            this.button_dns_apply.Size = new System.Drawing.Size(75, 23);
+            this.button_dns_apply.TabIndex = 2;
+            this.button_dns_apply.Text = "设置DNS";
+            this.button_dns_apply.UseVisualStyleBackColor = true;
+            this.button_dns_apply.Click += new System.EventHandler(this.button_dns_apply_Click);
+            // 
+            // button_ip_apply
+            // 
+            this.button_ip_apply.Location = new System.Drawing.Point(89, 62);
+            this.button_ip_apply.Name = "button_ip_apply";
+            this.button_ip_apply.Size = new System.Drawing.Size(75, 23);
+            this.button_ip_apply.TabIndex = 1;
+            this.button_ip_apply.Text = "设置IP";
+            this.button_ip_apply.UseVisualStyleBackColor = true;
+            this.button_ip_apply.Click += new System.EventHandler(this.button_ip_apply_Click);
+            // 
+            // button_exit
+            // 
+            this.button_exit.Location = new System.Drawing.Point(461, 62);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Size = new System.Drawing.Size(75, 23);
+            this.button_exit.TabIndex = 0;
+            this.button_exit.Text = "退出";
+            this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // groupBox_IpInfo
             // 
@@ -170,6 +215,91 @@ namespace NetworkCardHelper
             this.groupBox_IP.TabIndex = 8;
             this.groupBox_IP.TabStop = false;
             this.groupBox_IP.Text = "IP信息";
+            // 
+            // textBox_ip_dns2
+            // 
+            this.textBox_ip_dns2.Location = new System.Drawing.Point(280, 155);
+            this.textBox_ip_dns2.Name = "textBox_ip_dns2";
+            this.textBox_ip_dns2.Size = new System.Drawing.Size(247, 21);
+            this.textBox_ip_dns2.TabIndex = 19;
+            // 
+            // textBox_ip_dns1
+            // 
+            this.textBox_ip_dns1.Location = new System.Drawing.Point(280, 125);
+            this.textBox_ip_dns1.Name = "textBox_ip_dns1";
+            this.textBox_ip_dns1.Size = new System.Drawing.Size(247, 21);
+            this.textBox_ip_dns1.TabIndex = 18;
+            // 
+            // textBox_ip_subnet
+            // 
+            this.textBox_ip_subnet.Location = new System.Drawing.Point(280, 95);
+            this.textBox_ip_subnet.Name = "textBox_ip_subnet";
+            this.textBox_ip_subnet.Size = new System.Drawing.Size(247, 21);
+            this.textBox_ip_subnet.TabIndex = 17;
+            // 
+            // textBox_ip_gateway
+            // 
+            this.textBox_ip_gateway.Location = new System.Drawing.Point(280, 65);
+            this.textBox_ip_gateway.Name = "textBox_ip_gateway";
+            this.textBox_ip_gateway.Size = new System.Drawing.Size(247, 21);
+            this.textBox_ip_gateway.TabIndex = 16;
+            // 
+            // textBox_ip_ip
+            // 
+            this.textBox_ip_ip.Location = new System.Drawing.Point(280, 35);
+            this.textBox_ip_ip.Name = "textBox_ip_ip";
+            this.textBox_ip_ip.Size = new System.Drawing.Size(247, 21);
+            this.textBox_ip_ip.TabIndex = 15;
+            // 
+            // button_trans_dns2
+            // 
+            this.button_trans_dns2.Location = new System.Drawing.Point(236, 155);
+            this.button_trans_dns2.Name = "button_trans_dns2";
+            this.button_trans_dns2.Size = new System.Drawing.Size(30, 21);
+            this.button_trans_dns2.TabIndex = 14;
+            this.button_trans_dns2.Text = ">";
+            this.button_trans_dns2.UseVisualStyleBackColor = true;
+            this.button_trans_dns2.Click += new System.EventHandler(this.button_trans_dns2_Click);
+            // 
+            // button_trans_dns1
+            // 
+            this.button_trans_dns1.Location = new System.Drawing.Point(236, 125);
+            this.button_trans_dns1.Name = "button_trans_dns1";
+            this.button_trans_dns1.Size = new System.Drawing.Size(30, 21);
+            this.button_trans_dns1.TabIndex = 13;
+            this.button_trans_dns1.Text = ">";
+            this.button_trans_dns1.UseVisualStyleBackColor = true;
+            this.button_trans_dns1.Click += new System.EventHandler(this.button_trans_dns1_Click);
+            // 
+            // button_trans_subnet
+            // 
+            this.button_trans_subnet.Location = new System.Drawing.Point(236, 95);
+            this.button_trans_subnet.Name = "button_trans_subnet";
+            this.button_trans_subnet.Size = new System.Drawing.Size(30, 21);
+            this.button_trans_subnet.TabIndex = 12;
+            this.button_trans_subnet.Text = ">";
+            this.button_trans_subnet.UseVisualStyleBackColor = true;
+            this.button_trans_subnet.Click += new System.EventHandler(this.button_trans_subnet_Click);
+            // 
+            // button_trans_gateway
+            // 
+            this.button_trans_gateway.Location = new System.Drawing.Point(236, 65);
+            this.button_trans_gateway.Name = "button_trans_gateway";
+            this.button_trans_gateway.Size = new System.Drawing.Size(30, 21);
+            this.button_trans_gateway.TabIndex = 11;
+            this.button_trans_gateway.Text = ">";
+            this.button_trans_gateway.UseVisualStyleBackColor = true;
+            this.button_trans_gateway.Click += new System.EventHandler(this.button_trans_gateway_Click);
+            // 
+            // button_trans_ip
+            // 
+            this.button_trans_ip.Location = new System.Drawing.Point(236, 35);
+            this.button_trans_ip.Name = "button_trans_ip";
+            this.button_trans_ip.Size = new System.Drawing.Size(30, 21);
+            this.button_trans_ip.TabIndex = 10;
+            this.button_trans_ip.Text = ">";
+            this.button_trans_ip.UseVisualStyleBackColor = true;
+            this.button_trans_ip.Click += new System.EventHandler(this.button_trans_ip_Click);
             // 
             // label_ip_dns2_value
             // 
@@ -322,144 +452,38 @@ namespace NetworkCardHelper
             this.listBox_NetworkCard.ItemHeight = 12;
             this.listBox_NetworkCard.Location = new System.Drawing.Point(3, 3);
             this.listBox_NetworkCard.Name = "listBox_NetworkCard";
-            this.listBox_NetworkCard.Size = new System.Drawing.Size(213, 352);
+            this.listBox_NetworkCard.Size = new System.Drawing.Size(213, 400);
             this.listBox_NetworkCard.TabIndex = 0;
             this.listBox_NetworkCard.SelectedValueChanged += new System.EventHandler(this.NetworkCard_SelectedValueChanged);
             // 
-            // button_trans_ip
+            // button1
             // 
-            this.button_trans_ip.Location = new System.Drawing.Point(236, 35);
-            this.button_trans_ip.Name = "button_trans_ip";
-            this.button_trans_ip.Size = new System.Drawing.Size(30, 21);
-            this.button_trans_ip.TabIndex = 10;
-            this.button_trans_ip.Text = ">";
-            this.button_trans_ip.UseVisualStyleBackColor = true;
-            this.button_trans_ip.Click += new System.EventHandler(this.button_trans_ip_Click);
+            this.button1.Location = new System.Drawing.Point(9, 23);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "启用DHCP";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // button_trans_gateway
+            // button2
             // 
-            this.button_trans_gateway.Location = new System.Drawing.Point(236, 65);
-            this.button_trans_gateway.Name = "button_trans_gateway";
-            this.button_trans_gateway.Size = new System.Drawing.Size(30, 21);
-            this.button_trans_gateway.TabIndex = 11;
-            this.button_trans_gateway.Text = ">";
-            this.button_trans_gateway.UseVisualStyleBackColor = true;
-            this.button_trans_gateway.Click += new System.EventHandler(this.button_trans_gateway_Click);
-            // 
-            // button_trans_subnet
-            // 
-            this.button_trans_subnet.Location = new System.Drawing.Point(236, 95);
-            this.button_trans_subnet.Name = "button_trans_subnet";
-            this.button_trans_subnet.Size = new System.Drawing.Size(30, 21);
-            this.button_trans_subnet.TabIndex = 12;
-            this.button_trans_subnet.Text = ">";
-            this.button_trans_subnet.UseVisualStyleBackColor = true;
-            this.button_trans_subnet.Click += new System.EventHandler(this.button_trans_subnet_Click);
-            // 
-            // button_trans_dns1
-            // 
-            this.button_trans_dns1.Location = new System.Drawing.Point(236, 125);
-            this.button_trans_dns1.Name = "button_trans_dns1";
-            this.button_trans_dns1.Size = new System.Drawing.Size(30, 21);
-            this.button_trans_dns1.TabIndex = 13;
-            this.button_trans_dns1.Text = ">";
-            this.button_trans_dns1.UseVisualStyleBackColor = true;
-            this.button_trans_dns1.Click += new System.EventHandler(this.button_trans_dns1_Click);
-            // 
-            // button_trans_dns2
-            // 
-            this.button_trans_dns2.Location = new System.Drawing.Point(236, 155);
-            this.button_trans_dns2.Name = "button_trans_dns2";
-            this.button_trans_dns2.Size = new System.Drawing.Size(30, 21);
-            this.button_trans_dns2.TabIndex = 14;
-            this.button_trans_dns2.Text = ">";
-            this.button_trans_dns2.UseVisualStyleBackColor = true;
-            this.button_trans_dns2.Click += new System.EventHandler(this.button_trans_dns2_Click);
-            // 
-            // textBox_ip_ip
-            // 
-            this.textBox_ip_ip.Location = new System.Drawing.Point(280, 35);
-            this.textBox_ip_ip.Name = "textBox_ip_ip";
-            this.textBox_ip_ip.Size = new System.Drawing.Size(247, 21);
-            this.textBox_ip_ip.TabIndex = 15;
-            // 
-            // textBox_ip_gateway
-            // 
-            this.textBox_ip_gateway.Location = new System.Drawing.Point(280, 65);
-            this.textBox_ip_gateway.Name = "textBox_ip_gateway";
-            this.textBox_ip_gateway.Size = new System.Drawing.Size(247, 21);
-            this.textBox_ip_gateway.TabIndex = 16;
-            // 
-            // textBox_ip_subnet
-            // 
-            this.textBox_ip_subnet.Location = new System.Drawing.Point(280, 95);
-            this.textBox_ip_subnet.Name = "textBox_ip_subnet";
-            this.textBox_ip_subnet.Size = new System.Drawing.Size(247, 21);
-            this.textBox_ip_subnet.TabIndex = 17;
-            // 
-            // textBox_ip_dns1
-            // 
-            this.textBox_ip_dns1.Location = new System.Drawing.Point(280, 125);
-            this.textBox_ip_dns1.Name = "textBox_ip_dns1";
-            this.textBox_ip_dns1.Size = new System.Drawing.Size(247, 21);
-            this.textBox_ip_dns1.TabIndex = 18;
-            // 
-            // textBox_ip_dns2
-            // 
-            this.textBox_ip_dns2.Location = new System.Drawing.Point(280, 155);
-            this.textBox_ip_dns2.Name = "textBox_ip_dns2";
-            this.textBox_ip_dns2.Size = new System.Drawing.Size(247, 21);
-            this.textBox_ip_dns2.TabIndex = 19;
-            // 
-            // button_exit
-            // 
-            this.button_exit.Location = new System.Drawing.Point(461, 20);
-            this.button_exit.Name = "button_exit";
-            this.button_exit.Size = new System.Drawing.Size(75, 23);
-            this.button_exit.TabIndex = 0;
-            this.button_exit.Text = "退出";
-            this.button_exit.UseVisualStyleBackColor = true;
-            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
-            // 
-            // button_ip_apply
-            // 
-            this.button_ip_apply.Location = new System.Drawing.Point(89, 20);
-            this.button_ip_apply.Name = "button_ip_apply";
-            this.button_ip_apply.Size = new System.Drawing.Size(75, 23);
-            this.button_ip_apply.TabIndex = 1;
-            this.button_ip_apply.Text = "设置IP";
-            this.button_ip_apply.UseVisualStyleBackColor = true;
-            this.button_ip_apply.Click += new System.EventHandler(this.button_ip_apply_Click);
-            // 
-            // button_dns_apply
-            // 
-            this.button_dns_apply.Location = new System.Drawing.Point(169, 20);
-            this.button_dns_apply.Name = "button_dns_apply";
-            this.button_dns_apply.Size = new System.Drawing.Size(75, 23);
-            this.button_dns_apply.TabIndex = 2;
-            this.button_dns_apply.Text = "设置DNS";
-            this.button_dns_apply.UseVisualStyleBackColor = true;
-            this.button_dns_apply.Click += new System.EventHandler(this.button_dns_apply_Click);
-            // 
-            // button_all_apply
-            // 
-            this.button_all_apply.Location = new System.Drawing.Point(9, 19);
-            this.button_all_apply.Name = "button_all_apply";
-            this.button_all_apply.Size = new System.Drawing.Size(75, 23);
-            this.button_all_apply.TabIndex = 3;
-            this.button_all_apply.Text = "一键应用";
-            this.button_all_apply.UseVisualStyleBackColor = true;
-            this.button_all_apply.Click += new System.EventHandler(this.button_all_apply_Click);
+            this.button2.Location = new System.Drawing.Point(89, 23);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "启用DNS";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 497);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;
             this.Name = "Application";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Network Card  Tools v1.0 @niushuai233";
             this.panel1.ResumeLayout(false);
             this.groupBox1_TopOperate.ResumeLayout(false);
@@ -513,6 +537,8 @@ namespace NetworkCardHelper
         private System.Windows.Forms.Button button_ip_apply;
         private System.Windows.Forms.Button button_dns_apply;
         private System.Windows.Forms.Button button_all_apply;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

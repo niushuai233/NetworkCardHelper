@@ -16,7 +16,27 @@ namespace NetworkCardHelper
         {
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            System.Windows.Forms.Application.Run(new Application());
+
+            if (CheckAdministrator())
+            {
+                // 是管理员权限
+                System.Windows.Forms.Application.Run(new Application());
+            }
+            else
+            {
+                MessageBox.Show("Not Administrator");
+            }
+            
+        }
+
+        static bool CheckAdministrator()
+        {
+            System.Security.Principal.WindowsIdentity identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+
+            System.Security.Principal.WindowsPrincipal principal = new System.Security.Principal.WindowsPrincipal(identity);
+
+
+            return principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
         }
     }
 }
