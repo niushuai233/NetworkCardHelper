@@ -21,7 +21,23 @@ namespace NetworkCardHelper
         public Application()
         {
             InitializeComponent();
+            this.LoadIpConfigList();
             this.LoadNetworkCardInfoList();
+        }
+
+        private void LoadIpConfigList()
+        {
+            this.comboBox_ip_config_list.Items.Clear();
+            this.comboBox_ip_config_list.Items.Add("- -选择预配置加载- -");
+            this.comboBox_ip_config_list.SelectedIndex = 0;
+            List<IpInfo> list = Configs.LoadConfig().ipInfoList;
+            if (CommonUtil.isNotEmpty(list))
+            {
+                foreach (IpInfo ip in list)
+                {
+                    this.comboBox_ip_config_list.Items.Add(ip.ConfigName);
+                }
+            }
         }
 
         private void LoadNetworkCardInfoList()
