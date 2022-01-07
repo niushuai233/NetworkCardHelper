@@ -34,5 +34,20 @@ namespace NetworkCardHelper
             configs = XmlUtil.Xml2Obj<Configs>(path);
             return configs;
         }
+
+        public static IpInfo GetIpInfo(string configName)
+        {
+
+            List<IpInfo> list = LoadConfig().ipInfoList;
+            foreach (var item in list)
+            {
+                if (item.ConfigName.Equals(configName))
+                {
+                    return item;
+                }
+            }
+
+            return null;
+        }
     }
 }

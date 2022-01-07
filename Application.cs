@@ -375,7 +375,22 @@ namespace NetworkCardHelper
 
         private void comboBox_ip_config_list_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string val = this.comboBox_ip_config_list.SelectedItem.ToString();
+            IpInfo ipInfo = Configs.GetIpInfo(val);
+            SetIpInfo(ipInfo);
+        }
 
+        private void SetIpInfo(IpInfo ipInfo)
+        {
+            if (null == ipInfo)
+            {
+                ipInfo = new IpInfo();
+            }
+            this.textBox_ip_ip.Text = ipInfo.Ip;
+            this.textBox_ip_subnet.Text = ipInfo.Subnet;
+            this.textBox_ip_gateway.Text = ipInfo.Gateway;
+            this.textBox_ip_dns1.Text = ipInfo.Dns1;
+            this.textBox_ip_dns2.Text = ipInfo.Dns2;
         }
     }
 }
