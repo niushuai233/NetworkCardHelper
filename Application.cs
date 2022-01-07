@@ -19,8 +19,6 @@ namespace NetworkCardHelper
         [Obsolete]
         public Application()
         {
-            System.Net.IPAddress ip;
-            Console.WriteLine(System.Net.IPAddress.TryParse("4.4.4", out ip));
             InitializeComponent();
             this.LoadNetworkCardInfoList();
         }
