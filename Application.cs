@@ -15,7 +15,6 @@ namespace NetworkCardHelper
 {
     public partial class Application : Form
     {
-        public static string publicDNS = "";
         [Obsolete]
         public Application()
         {
@@ -329,14 +328,14 @@ namespace NetworkCardHelper
 
         private void button_ip_select_dns1_Click(object sender, EventArgs e)
         {
-            Forms.PublicDNSForm publicDNSForm = new Forms.PublicDNSForm(this);
+            Forms.PublicDNSForm publicDNSForm = new Forms.PublicDNSForm(this.textBox_ip_dns1);
 
             publicDNSForm.ShowDialog(this);
         }
 
         private void button_ip_select_dns2_Click(object sender, EventArgs e)
         {
-            Forms.PublicDNSForm publicDNSForm = new Forms.PublicDNSForm(this);
+            Forms.PublicDNSForm publicDNSForm = new Forms.PublicDNSForm(this.textBox_ip_dns2);
 
             publicDNSForm.ShowDialog(this);
         }

@@ -30,6 +30,7 @@ namespace NetworkCardHelper.Forms
         private void InitializeComponent()
         {
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button_public_dns_confrim = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -62,11 +63,22 @@ namespace NetworkCardHelper.Forms
             this.listBox1.TabIndex = 0;
             this.listBox1.DoubleClick += new System.EventHandler(this.doubleTest_Click);
             // 
+            // button_public_dns_confrim
+            // 
+            this.button_public_dns_confrim.Location = new System.Drawing.Point(397, 250);
+            this.button_public_dns_confrim.Name = "button_public_dns_confrim";
+            this.button_public_dns_confrim.Size = new System.Drawing.Size(75, 23);
+            this.button_public_dns_confrim.TabIndex = 1;
+            this.button_public_dns_confrim.Text = "确认";
+            this.button_public_dns_confrim.UseVisualStyleBackColor = true;
+            this.button_public_dns_confrim.Click += new System.EventHandler(this.button_public_dns_confrim_Click);
+            // 
             // PublicDNSForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 261);
+            this.ClientSize = new System.Drawing.Size(484, 279);
+            this.Controls.Add(this.button_public_dns_confrim);
             this.Controls.Add(this.listBox1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -80,5 +92,6 @@ namespace NetworkCardHelper.Forms
         #endregion
 
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button_public_dns_confrim;
     }
 }
