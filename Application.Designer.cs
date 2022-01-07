@@ -43,7 +43,8 @@ namespace NetworkCardHelper
             this.button_exit = new System.Windows.Forms.Button();
             this.groupBox_IpInfo = new System.Windows.Forms.GroupBox();
             this.groupBox_IP = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button_ip_config_save = new System.Windows.Forms.Button();
+            this.comboBox_ip_config_list = new System.Windows.Forms.ComboBox();
             this.button_ip_select_dns2 = new System.Windows.Forms.Button();
             this.button_ip_select_dns1 = new System.Windows.Forms.Button();
             this.textBox_ip_dns2 = new System.Windows.Forms.TextBox();
@@ -212,7 +213,8 @@ namespace NetworkCardHelper
             // 
             // groupBox_IP
             // 
-            this.groupBox_IP.Controls.Add(this.comboBox1);
+            this.groupBox_IP.Controls.Add(this.button_ip_config_save);
+            this.groupBox_IP.Controls.Add(this.comboBox_ip_config_list);
             this.groupBox_IP.Controls.Add(this.button_ip_select_dns2);
             this.groupBox_IP.Controls.Add(this.button_ip_select_dns1);
             this.groupBox_IP.Controls.Add(this.textBox_ip_dns2);
@@ -242,16 +244,27 @@ namespace NetworkCardHelper
             this.groupBox_IP.TabStop = false;
             this.groupBox_IP.Text = "IP信息";
             // 
-            // comboBox1
+            // button_ip_config_save
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] { "- -选择预配置加载- -"});
-            this.comboBox1.SelectedIndex = 0;
-            this.comboBox1.Location = new System.Drawing.Point(280, 20);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(247, 20);
-            this.comboBox1.TabIndex = 22;
+            this.button_ip_config_save.Location = new System.Drawing.Point(280, 20);
+            this.button_ip_config_save.Name = "button_ip_config_save";
+            this.button_ip_config_save.Size = new System.Drawing.Size(73, 20);
+            this.button_ip_config_save.TabIndex = 23;
+            this.button_ip_config_save.Text = "保存配置";
+            this.button_ip_config_save.UseVisualStyleBackColor = true;
+            this.button_ip_config_save.Click += new System.EventHandler(this.button_ip_config_save_Click);
+            // 
+            // comboBox_ip_config_list
+            // 
+            this.comboBox_ip_config_list.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ip_config_list.FormattingEnabled = true;
+            this.comboBox_ip_config_list.Items.AddRange(new object[] {
+            "- -选择预配置加载- -"});
+            this.comboBox_ip_config_list.Location = new System.Drawing.Point(383, 20);
+            this.comboBox_ip_config_list.Name = "comboBox_ip_config_list";
+            this.comboBox_ip_config_list.Size = new System.Drawing.Size(144, 20);
+            this.comboBox_ip_config_list.TabIndex = 22;
+            this.comboBox_ip_config_list.SelectedIndexChanged += new System.EventHandler(this.comboBox_ip_config_list_SelectedIndexChanged);
             // 
             // button_ip_select_dns2
             // 
@@ -581,7 +594,8 @@ namespace NetworkCardHelper
         private System.Windows.Forms.Label label_current_card_key_hidden;
         private System.Windows.Forms.Button button_ip_select_dns2;
         private System.Windows.Forms.Button button_ip_select_dns1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox_ip_config_list;
+        private System.Windows.Forms.Button button_ip_config_save;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NetworkCardHelper.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -32,6 +33,16 @@ namespace NetworkCardHelper
                 return (speed / 1000) + " Kbps";
             }
             return speed.ToString();
+        }
+
+        internal static void CreateProjectFolder()
+        {
+            System.IO.Directory.CreateDirectory(CommonConstant.USER_PROFILE_DIRECTORY + "/" + CommonConstant.USER_PROFILE_PROJECT_DIRECTORY + "/" + CommonConstant.PROJECT_NAME);
+        }
+
+        public static string GetConfigLocation()
+        {
+            return CommonConstant.USER_PROFILE_DIRECTORY + "/" + CommonConstant.USER_PROFILE_PROJECT_DIRECTORY + "/" + CommonConstant.PROJECT_NAME + "/" + CommonConstant.CONFIG_FILENAME;
         }
 
         public static long IpToLong(string ip)

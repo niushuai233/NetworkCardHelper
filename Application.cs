@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NetworkCardHelper.Base;
+using NetworkCardHelper.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -338,6 +340,26 @@ namespace NetworkCardHelper
             Forms.PublicDNSForm publicDNSForm = new Forms.PublicDNSForm(this.textBox_ip_dns2);
 
             publicDNSForm.ShowDialog(this);
+        }
+
+        private void button_ip_config_save_Click(object sender, EventArgs e)
+        {
+            IpInfo ip = new IpInfo();
+            ip.Ip = this.textBox_ip_ip.Text;
+            ip.Subnet = this.textBox_ip_subnet.Text;
+            ip.Gateway = this.textBox_ip_gateway.Text;
+            ip.Dns1 = this.textBox_ip_dns1.Text;
+            ip.Dns2 = this.textBox_ip_dns2.Text;
+
+            if (ip.verify())
+            {
+                new ConfigForm(ip).ShowDialog(this);
+            }
+        }
+
+        private void comboBox_ip_config_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
